@@ -18,6 +18,13 @@ DIST_ROOT = ROOT / "dist"
 APP_NAME = "GT Automation Studio"
 
 
+def configure_console() -> None:
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is not None:
+            reconfigure(encoding="utf-8", errors="replace")
+
+
 def run(command: list[str]) -> None:
     print("[build]", " ".join(command))
     subprocess.run(command, cwd=ROOT, check=True)
@@ -242,6 +249,7 @@ def package_zip(built: Path) -> Path:
 
 
 def main() -> int:
+    configure_console()
     platform_key()
     reset_directory(BUILD_ROOT)
     DIST_ROOT.mkdir(parents=True, exist_ok=True)
