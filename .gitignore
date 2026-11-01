@@ -1,0 +1,33 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Runtime secrets and generated data
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+gt.json
+account.json
+task/
+zhaoxian.json
+qiluo_jingyi.json
+welfare_session.json
+runtime/
+logs/
+gt_studio.log
+gt_studio.log.*
+daily_*.log
+star_*.log
+build/
+dist/
+
+# Capture files can contain account tokens
+*.har
+data/har/
+
+# Raw HAR analysis can contain account identifiers and session tokens
+docs/reports/

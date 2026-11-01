@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gt-automation-studio"
+version = "1.0.0"
+description = "Cross-platform desktop console for GT daily welfare and star automation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "websockets==12.0",
+]
+
+[project.scripts]
+gt-studio = "gt_automation.app:main"
+
+[tool.setuptools.packages.find]
+include = ["gt_automation*"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
