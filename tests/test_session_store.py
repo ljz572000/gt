@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -74,10 +75,11 @@ class SessionStoreTests(unittest.TestCase):
             self.assertTrue(task_file(TASK_STAR, base_dir).exists())
             self.assertTrue(loaded_metadata.star_ready)
             self.assertEqual(loaded_metadata.account["role_name"], "测试角色")
-            self.assertEqual(
-                task_file(TASK_DAILY, base_dir).stat().st_mode & 0o777,
-                0o600,
-            )
+            if os.name != "nt":
+                self.assertEqual(
+                    task_file(TASK_DAILY, base_dir).stat().st_mode & 0o777,
+                    0o600,
+                )
 
     def test_missing_file_has_clear_error(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
